@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+    backend:
+        build: ./simple-api
+        container_name: backend
+        networks:
+            - mynetwork
+        depends_on:
+            - database
+
+    database:
+        build: ./database
+        container_name: database
+        networks:
+            - mynetwork
+
+    httpd:
+        build: ./http-server
+        container_name: httpd
+        ports:
+            - "1212:80"
+        networks:
+            - mynetwork
+        depends_on:
+            - backend
+
+networks:
+    mynetwork:
