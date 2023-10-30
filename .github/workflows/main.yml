@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Login to Docker Hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p {{sercets.DOCKER_TOKEN_PASSWORD}}
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p {{ sercets.DOCKER_TOKEN_PASSWORD }}
       
       - name: Build image and push backend
         uses: docker/build-push-action@v3
