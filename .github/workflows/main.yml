@@ -31,7 +31,7 @@ jobs:
     needs: test-backend
     runs-on: ubuntu-22.04
     steps:
-    - name: Login to Docker Hub
+      - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p {{ secrets.DOCKER_TOKEN_PASSWORD }}
       
       - name: Build image and push backend
