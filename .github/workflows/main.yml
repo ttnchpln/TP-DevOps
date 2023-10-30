@@ -25,3 +25,32 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify
         working-directory: simple-api
+
+
+  build-and-push-docker-image:
+    needs: test-backend
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Login to Docker Hub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p {{sercets.DOCKER_TOKEN_PASSWORD}}
+      
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./simple-api
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-simple-api:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build image and push database
+        uses: docker/build-push-action@v3
+        with:
+          context: ./database
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-database:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build image and push httpd
+        uses: docker/build-push-action@v3
+        with:
+          context: ./http-server
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-http-server:latest 
+          push: ${{ github.ref == 'refs/heads/main' }}  
