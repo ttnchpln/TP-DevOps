@@ -31,26 +31,29 @@ jobs:
     needs: test-backend
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN_PASSWORD }}
       
       - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
-          context: simple-api
+          context: ./simple-api
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-simple-api:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
-          context: database
+          context: ./database
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-database:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
-          context: http-server
+          context: ./http-server
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-http-server:latest 
           push: ${{ github.ref == 'refs/heads/main' }}  
