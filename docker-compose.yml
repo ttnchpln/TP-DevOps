@@ -27,10 +27,10 @@ services:
     
     front:
         build: ./devops-front
-        container-name: front
+        container_name: front
         networks: 
             - app-network
-        depends-on:
+        depends_on:
             - httpd
 
 networks:

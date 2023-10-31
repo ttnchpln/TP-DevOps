@@ -63,4 +63,4 @@ jobs:
         with:
           context: ./devops-front
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  
+          push: ${{ github.ref == 'refs/heads/main' }}
