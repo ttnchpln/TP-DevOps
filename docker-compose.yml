@@ -5,7 +5,7 @@ services:
         build: ./simple-api
         container_name: backend
         networks:
-            - mynetwork
+            - app-network
         depends_on:
             - database
 
@@ -13,7 +13,7 @@ services:
         build: ./database
         container_name: database
         networks:
-            - mynetwork
+            - app-network
 
     httpd:
         build: ./http-server
@@ -21,7 +21,7 @@ services:
         ports:
             - "1212:80"
         networks:
-            - mynetwork
+            - app-network
         depends_on:
             - backend
     
@@ -29,9 +29,9 @@ services:
         build: ./devops-front
         container-name: front
         networks: 
-            - mynetwork
+            - app-network
         depends-on:
             - httpd
 
 networks:
-    mynetwork:
+    app-network:
