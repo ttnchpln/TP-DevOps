@@ -1,0 +1,12 @@
+---
+# tasks file for roles/app
+
+- name: Run API
+  docker_container:
+    name: backend
+    image: ttchpln/tp-devops-simple-api:latest
+    state: started
+    networks: 
+      - name: app-network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

@@ -1,0 +1,9 @@
+---
+# tasks file for roles/network
+
+- name: Create Network
+  docker_network:
+    name: app-network
+    driver: bridge
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

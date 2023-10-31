@@ -57,3 +57,9 @@ jobs:
           context: ./http-server
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-http-server:latest 
           push: ${{ github.ref == 'refs/heads/main' }}  
+      - name: Build image and push front
+        uses: docker/build-push-action@v3
+        with:
+          context: ./devops-front
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest
+          pushh: ${{ github.ref == 'refs/heads/main' }}  
