@@ -1,0 +1,12 @@
+---
+# tasks file for roles/front
+
+- name: Run Front
+  docker_container:
+    name: front
+    image: ttchpln/tp-devops-front:latest
+    state: started
+    networks: 
+      - name: app-network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
