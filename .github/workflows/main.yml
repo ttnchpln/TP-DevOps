@@ -59,9 +59,8 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }}  
           
       - name: Build image and push front
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: ./devops-front
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest
-          file: ./devops-front/Dockerfile
           push: ${{ github.ref == 'refs/heads/main' }}  
