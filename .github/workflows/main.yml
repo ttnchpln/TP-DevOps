@@ -62,6 +62,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./devops-front
-          file: ./devops-front/Dockerfile
-          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest   
+          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest
           push: ${{ github.ref == 'refs/heads/main' }}   
