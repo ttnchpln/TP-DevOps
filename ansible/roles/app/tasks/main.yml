@@ -4,9 +4,12 @@
 - name: Run API
   docker_container:
     name: backend
-    image: ttchpln/tp-devops-simple-api:latest
+    image: ttchpln/tp-devops-backend:latest
     state: started
     networks: 
       - name: app-network
+    pull: true
+    ports:
+      - "81:81"
   vars:
     ansible_python_interpreter: /usr/bin/python3

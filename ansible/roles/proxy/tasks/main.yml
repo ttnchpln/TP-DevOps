@@ -4,10 +4,12 @@
 - name: Run HTTPD
   docker_container:
     name: httpd
-    image: ttchpln/tp-devops-http-server:latest
+    image: ttchpln/tp-devops-httpd:latest
     state: started
     networks: 
       - name: app-network
-    ports: "80:80"
+    pull: true
+    ports:
+      - "80:80"
   vars:
     ansible_python_interpreter: /usr/bin/python3

@@ -4,6 +4,8 @@ services:
     backend:
         build: ./simple-api
         container_name: backend
+        ports: 
+            - "8081:8081"
         networks:
             - app-network
         depends_on:
@@ -18,8 +20,6 @@ services:
     httpd:
         build: ./http-server
         container_name: httpd
-        ports:
-            - "1212:80"
         networks:
             - app-network
         depends_on:

@@ -8,5 +8,6 @@
     state: started
     networks: 
       - name: app-network
+    pull: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
