@@ -57,13 +57,10 @@ jobs:
           context: ./http-server
           tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-httpd:latest 
           push: ${{ github.ref == 'refs/heads/main' }}  
-
-      - name: Login to Docker Hub again
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN_PASSWORD }}
           
-      - name: Build image and push front
-        uses: docker/build-push-action@v3
-        with:
-          context: ./devops-front
-          tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest
-          push: ${{ github.ref == 'refs/heads/main' }}   
+      # - name: Build image and push front
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: ./devops-front
+      #     tags: ${{secrets.DOCKER_USERNAME}}/tp-devops-front:latest
+      #     push: ${{ github.ref == 'refs/heads/main' }}   
